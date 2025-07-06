@@ -1,15 +1,79 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/open-sauce/OpenSauceOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Medium */
+
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/open-sauce/OpenSauceOne-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Bold */
+
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/open-sauce/OpenSauceOne-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Italic */
+
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/open-sauce/OpenSauceOne-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+/* Bold Italic */
+
+@font-face {
+  font-family: 'Open Sauce One';
+  src: url('/fonts/open-sauce/OpenSauceOne-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Anton';
+  src: url('/fonts//Anton-Regular.ttf') format('truetype');
+}
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --dark: #213448;
+  --light: #ffffff;
+  --secondary: #5271ff;
+  --border: #e0e0e0;
+  --border-dark: #787878;
+  --font-open-sauce: 'Open Sauce One', sans-serif;
+  --font-anton: 'Anton', sans-serif;
+  --dark-bg: #213448;
+  --dark-text: #547792;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-dark: var(--dark);
+  --color-light: var(--light);
+  --color-secondary: var(--secondary);
+  --color-border: var(--border);
+  --color-border-dark: var(--border-dark);
+  --font-open-sauce: var(--font-open-sauce);
+  --font-anton: var(--font-anton);
+  --dark-bg: var(--dark-bg);
+  --dark-text: var(--dark-text);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,6 +85,44 @@
 
 body {
   background: var(--background);
+  font-family: var(--font-open-sauce), Helvetica, sans-serif;
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.timer-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.time-wrapper {
+  position: relative;
+  width: 80px;
+  height: 60px;
+  font-size: 48px;
+  font-family: 'Montserrat';
+}
+
+.time-wrapper .time {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 0.2s;
+}
+
+.time-wrapper .time.up {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.time-wrapper .time.down {
+  opacity: 0;
+  transform: translateY(100%);
 }

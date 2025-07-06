@@ -1,0 +1,1 @@
+ALTER TABLE "site_analysis" ADD COLUMN "tech" text NOT NULL;

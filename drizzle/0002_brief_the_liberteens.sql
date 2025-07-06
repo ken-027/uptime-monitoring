@@ -1,0 +1,1 @@
+ALTER TABLE "monitor_log" DROP COLUMN "description";
