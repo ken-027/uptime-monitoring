@@ -21,6 +21,8 @@ jobs:
 
       - name: Build app
         run: npm run build
+        env:
+          BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
 
       - name: 🔗 Write .vercel/project.json
         run: |
