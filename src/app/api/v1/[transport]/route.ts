@@ -1,5 +1,7 @@
 import MonitorModel from '@/db/model/monitor.model';
+import SubscriptionModel from '@/db/model/subscription.model';
 import { auth } from '@/lib/auth.lib';
+import CronJob from '@/lib/cron-job.lib';
 import { createMcpHandler } from '@vercel/mcp-adapter';
 import { withMcpAuth } from 'better-auth/plugins';
 import z from 'zod';
@@ -38,21 +40,48 @@ const handler = withMcpAuth(auth, (req, session) => {
         },
         async ({ name, url, interval }) => {
           const monitor = new MonitorModel();
+          const subscription = new SubscriptionModel();
+
+          await subscription.validatePlan(userId, interval);
 
           await monitor.checkUrl(url, userId);
-
-          await monitor.add({
+          const addedMonitor = await monitor.add({
+            name,
             url,
             interval,
-            name,
-            userId,
+            userId: userId,
           });
+
+          const cronJob = new CronJob(addedMonitor.id);
+          await cronJob.addToCron();
 
           return {
             content: [
               {
                 type: 'text',
                 text: 'Successfully add',
+              },
+            ],
+          };
+        },
+      );
+
+      server.tool(
+        'pause_monitor',
+        'pause a monitor that is running',
+        {
+          id: z.string().trim(),
+        },
+        async ({ id }) => {
+          const cronJob = new CronJob(id);
+
+          await cronJob.pause();
+
+          return {
+            content: [
+              {
+                type: 'text',
+                text: 'Successfully deleted',
               },
             ],
           };
@@ -67,8 +96,10 @@ const handler = withMcpAuth(auth, (req, session) => {
         },
         async ({ id }) => {
           const monitor = new MonitorModel();
+          const cronJob = new CronJob(id);
 
           await monitor.deleteItem(id);
+          await cronJob.remove();
 
           return {
             content: [
