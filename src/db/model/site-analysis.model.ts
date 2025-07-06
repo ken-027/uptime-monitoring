@@ -30,6 +30,15 @@ export default class SiteAnalysisModel extends DB {
     return analysis;
   }
 
+  async getAnalysisList(monitorId: string) {
+    const analysis = await this.db.query.siteAnalysis.findMany({
+      where: eq(siteAnalysisSchema.monitorId, monitorId),
+      orderBy: [desc(siteAnalysisSchema.createdAt)],
+    });
+
+    return analysis;
+  }
+
   async deleteByMonitorId(id: string) {
     await this.db.delete(siteAnalysisSchema).where(eq(siteAnalysisSchema.monitorId, id));
   }
