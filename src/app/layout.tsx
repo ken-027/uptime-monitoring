@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     siteName: 'Uptime Monitoring',
     images: [
       {
-        url: '/uptime-logo.svg', // Ensure this image exists in the public folder
-        width: 1200,
-        height: 630,
+        url: '/og-image.png',
+        width: 1668,
+        height: 996,
         alt: 'Uptime Monitoring – Website Health Checker',
       },
     ],
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: 'Uptime Monitoring – Website Health Checker',
     description:
       'Track and monitor your website’s uptime and performance. Get instant alerts and insights when your services go down.',
-    images: ['/uptime-logo.svg'],
+    images: ['/og-image.png'],
   },
   icons: {
     icon: '/uptime-logo.svg',
