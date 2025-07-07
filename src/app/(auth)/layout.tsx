@@ -41,6 +41,15 @@ export default async function AuthLayout({
       {children}
     </Space>
   ) : (
-    <h1>Need to be login</h1>
+    <Space direction="vertical" align="center" className="w-full">
+      <h1 className="font-anton text-2xl lg:text-4xl">Unauthorized Access</h1>
+      <p>Sign in to access the site</p>
+      <Image
+        src="/illustration/error/401.svg"
+        alt="401 unauthorized access"
+        height={500}
+        width={500}
+      />
+    </Space>
   );
 }

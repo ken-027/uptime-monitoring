@@ -40,7 +40,7 @@ export default async function Dashboard() {
 
   return (
     <Space direction="vertical">
-      <h2 className="font-anton text-center text-2xl">Active Monitors</h2>
+      <h2 className="font-anton text-center text-2xl lg:text-left lg:ml-4">Active Monitors</h2>
       <div className="flex justify-between">
         <div className="w-full lg:grid-cols-2 2xl:grid-cols-3 grid gap-10">
           {list.map((item) => (

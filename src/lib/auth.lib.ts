@@ -7,6 +7,7 @@ import { headers } from 'next/headers';
 import { User } from '@/types/model';
 import { UnAuthorizedError } from '@/errors/unauthorized.error';
 import SubscriptionModel from '@/db/model/subscription.model';
+import PushoverNotificationUtil from '@/util/pushover-notification.util';
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, { provider: 'pg' }),
@@ -26,7 +27,10 @@ export const auth = betterAuth({
       create: {
         after: async (user) => {
           const subscriptionModel = new SubscriptionModel();
+          const pushover = new PushoverNotificationUtil();
+
           await subscriptionModel.new(user.id);
+          pushover.userCreated(user.name, user.email);
         },
       },
     },
