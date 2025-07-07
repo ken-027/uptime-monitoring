@@ -12,5 +12,5 @@ export default function LoginButton() {
     });
   };
 
-  return <ButtonCommon icon={<GoogleOutlined />} text="Sign with Google" onClick={onLogin} />;
+  return <ButtonCommon icon={<GoogleOutlined />} text="Sign in with Google" onClick={onLogin} />;
 }
