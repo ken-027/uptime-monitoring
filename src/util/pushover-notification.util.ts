@@ -42,4 +42,20 @@ export default class PushoverNotificationUtil {
       console.log(result);
     });
   }
+
+  userCreated(name: string, email: string) {
+    const msg = {
+      message: `A new user has registered\n\nEmail: ${email}\nName: ${name}`,
+      title: 'New User',
+      sound: 'bugle',
+      priority: 0,
+    };
+
+    this.pushover.send(msg, (err: unknown, result: unknown) => {
+      if (err) {
+        throw err;
+      }
+      console.log(result);
+    });
+  }
 }

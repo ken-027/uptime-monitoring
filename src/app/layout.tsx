@@ -5,8 +5,37 @@ import '@ant-design/v5-patch-for-react-19';
 import NavBarLayout from '@/components/client/common/layout/navbar.layout';
 
 export const metadata: Metadata = {
-  title: 'Uptime Monitoring',
-  description: 'where your sites check statuses',
+  title: 'Uptime Monitoring – Website Health Checker',
+  description:
+    'Track and monitor your website’s uptime and performance. Get instant alerts and insights when your services go down.',
+  metadataBase: new URL('https://uptime-monitoring.ksoftdev.site'),
+  openGraph: {
+    title: 'Uptime Monitoring – Website Health Checker',
+    description:
+      'Track and monitor your website’s uptime and performance. Get instant alerts and insights when your services go down.',
+    url: 'https://uptime-monitoring.ksoftdev.site',
+    siteName: 'Uptime Monitoring',
+    images: [
+      {
+        url: '/uptime-logo.svg', // Ensure this image exists in the public folder
+        width: 1200,
+        height: 630,
+        alt: 'Uptime Monitoring – Website Health Checker',
+      },
+    ],
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Uptime Monitoring – Website Health Checker',
+    description:
+      'Track and monitor your website’s uptime and performance. Get instant alerts and insights when your services go down.',
+    images: ['/uptime-logo.svg'],
+  },
+  icons: {
+    icon: '/uptime-logo.svg',
+  },
+  themeColor: '#0f172a',
 };
 
 export default async function RootLayout({
